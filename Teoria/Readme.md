@@ -67,3 +67,8 @@ Es una parte de nuestra aplicación. Puedo tener un componente para el header, o
     }
 
 ```
+
+> Los componentes se inicializan en el archivo "app.module.ts"
+
+## EJEMPLO
+Creamos una carpeta "videojuego", donde colocaremos 2 archivos "videojuego.component.ts" (para los componentes) y el otro "videojuego.component.html"
