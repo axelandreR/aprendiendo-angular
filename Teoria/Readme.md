@@ -70,10 +70,11 @@ Es una parte de nuestra aplicación. Puedo tener un componente para el header, o
 
 > Los componentes se inicializan en el archivo "app.module.ts"
 
-## EJEMPLO
+___
+## EJEMPLO DE DEFINIR UNA TEMPLATE EN LINEA
 Creamos una carpeta "videojuego", donde colocaremos 2 archivos "videojuego.component.ts" (para los componentes) y el otro "videojuego.component.html"
 
-En la carpeta "videojuego.component.ts" creamos el componente:
+En el archivo "videojuego.component.ts" creamos el componente:
 
 ```javascript
     import { Component } from "@angular/core"; //Indicar el paquete donde estará ubicado el componente
@@ -126,4 +127,72 @@ Para utilizar el componente, solo debemos colocar la nueva etiqueta en "app.comp
 
     <videojuego></videojuego> <!-- Nuevo componente -->
     </div>
+```
+
+> **IMPORTANTE:** Lo más recomendable es definir una template en una vista externa.
+
+Para hacer esto llevamos lo que colocamos el archivo "videojuego.component.ts" en la parte de *Template*, a otro archivo llamado "videojuego.component.html". Hacemos los siguientes cambios:
+
+```javascript
+    // En videojuego.component.ts
+    import { Component } from "@angular/core";
+
+    @Component({
+        selector: 'videojuego',
+        templateUrl: './videojuego.component.html'
+    })
+
+    export class VideojuegoComponent {
+
+        constructor() {
+            console.log("Se ha cargado el componente")
+        }
+    }
+```
+
+```html
+    <!-- En el nuevo archivo videjuego.component.html -->
+    <h2>Componente de Videojuegos</h2>
+    <ul>
+        <li>GTA</li>
+        <li>Prince of Persia</li>
+        <li>Tekken</li>
+        <li>Mario</li>   
+    </ul>
+```
+
+---
+## PROPIEDADES
+Dentro de las clases se pueden colocar propiedades Publicas.
+
+```javascript
+    import { Component } from "@angular/core";
+
+    @Component({
+        selector: 'videojuego',
+        templateUrl: './videojuego.component.html'
+    })
+
+    export class VideojuegoComponent {
+        public titulo: string;
+        public listado: string;
+
+        constructor() {
+            this.titulo = "Videojuegos";
+            this.listado = "Listado de los juegos más populares";
+            console.log("Se ha cargado el componente");
+        }
+    }
+```
+En el videojuego.component.html
+
+```html
+    <h2>{{titulo}}</h2> <!--Se incrusta la variable creada en el constructor  -->
+    <p>{{listado}}</p>
+    <ul>
+        <li>GTA</li>
+        <li>Prince of Persia</li>
+        <li>Tekken</li>
+        <li>Mario</li>   
+    </ul>
 ```
