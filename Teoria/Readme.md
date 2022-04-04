@@ -72,3 +72,58 @@ Es una parte de nuestra aplicación. Puedo tener un componente para el header, o
 
 ## EJEMPLO
 Creamos una carpeta "videojuego", donde colocaremos 2 archivos "videojuego.component.ts" (para los componentes) y el otro "videojuego.component.html"
+
+En la carpeta "videojuego.component.ts" creamos el componente:
+
+```javascript
+    import { Component } from "@angular/core"; //Indicar el paquete donde estará ubicado el componente
+
+    @Component({ //Decorador (no colocar punto y coma)
+        selector: 'videojuego', //nombre de la etiqueta
+        template: `
+            <h2>Componente de Videojuegos</h2>
+            <ul>
+                <li>GTA</li>
+                <li>Prince of Persia</li>
+                <li>Tekken</li>
+                <li>Mario</li>   
+            </ul>
+            `
+    })
+    export class VideojuegoComponent {
+        constructor(){
+            console.log("Se ha cargado un componente")
+        }
+    }
+```
+
+Para poder utilizar este componente, vamos al archivo "app.module.ts" e importo la clase "VideojuegoComponent" y luego declararlo en el array de "declarations"
+
+```javascript
+    import { VideojuegoComponent } from './videojuego/videojuego.component';
+
+    @NgModule({
+        declarations: [
+            AppComponent,
+            VideojuegoComponent //Componente nuevo
+        ],
+        imports: [
+            BrowserModule,
+            AppRoutingModule
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+```
+
+Para utilizar el componente, solo debemos colocar la nueva etiqueta en "app.component.html"
+
+```html
+    <div class="content" role="main">
+    <h1>Bienvenido al {{ title }}</h1>
+    <p>Vamos a aprender Angular juntos</p>
+
+    <videojuego></videojuego> <!-- Nuevo componente -->
+    </div>
+```
