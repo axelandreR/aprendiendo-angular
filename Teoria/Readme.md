@@ -196,3 +196,33 @@ En el videojuego.component.html
         <li>Mario</li>   
     </ul>
 ```
+
+## MULTIPLES / VARIOS COMPONENTES
+
+Si creamos otros componentes, estos podemos reutilizarlos de la manera que queramos, podemos invocarlos de manera directa en el html principal, o colocarlo dentro de otro componente, para que este componente lo muestre luego. En ambas situaciones va a funcionar el componente.
+
+Ejemplo: el componente "zapatillas" a sido creado como otro componente pero puede utilizarse sin ningún problema en el componente "videojuego"
+
+```html
+    <!-- videojuego.component.html -->
+    <h2>{{titulo}}</h2>
+    <p>{{listado}}</p>
+    <ul>
+        <li>GTA</li>
+        <li>Prince of Persia</li>
+        <li>Tekken</li>
+        <li>Mario</li>   
+    </ul>
+    <zapatillas></zapatillas>
+```
+
+---
+---
+
+## CREAR COMPONENTES DESDE LA CONSOLA
+Se recomienda utilizar CMD en Windows
+Ingresar a la ruta del proyecto y colocar:
+
+> ng g component (nombre del componente)
+
+Al crearlo de esta manera, el sistema crea automáticamente el import y el declaration en el app.module.ts
