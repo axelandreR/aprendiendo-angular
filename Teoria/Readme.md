@@ -226,3 +226,53 @@ Ingresar a la ruta del proyecto y colocar:
 > ng g component (nombre del componente)
 
 Al crearlo de esta manera, el sistema crea automáticamente el import y el declaration en el app.module.ts
+
+## HOOKS / EVENTOS CICLO DE VIDA
+
+> Hooks: Eventos de un componente que se ejecutan en un momento dado del ciclo de vida del componente. Se lanzan dependiendo del estado del componente.
+
+### OnInit
+
+Se implenta en una interfaz de la siguiente manera:
+
+```javascript
+    
+    import { Component, OnInit } from '@angular/core';
+
+    @Component({
+        selector: 'cursos',
+        templateUrl: './cursos.component.html',
+        styleUrls: ['./cursos.component.css']
+    })
+    export class CursosComponent implements OnInit {
+
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+}
+```
+
+Este Hook brinda acceso a los siguientes métodos:
+- **ngOnInit:** Este es el método que se ejecuta nada más cargar un componente.
+```javascript
+    ngOnInit(): void {
+        }
+```
+- **ngDoCheck:** este metodo se ejecuta cada vez que hay algún cambio en el código.
+> export class VideojuegoComponent implements OnInit, DoCheck{ }
+
+```javascript
+    ngDoCheck(): void {
+        console.log("DoCheck ejecutado");
+    }
+```
+
+- **OnDestroy:** este metodo se ejecuta cuando se elimina un componente.
+> export class VideojuegoComponent implements OnInit, DoCheck, OnDestroy{ }
+```javascript
+    ngOnDestroy(): void {
+        console.log("OnDestroy ejecutado")
+    }
+```
