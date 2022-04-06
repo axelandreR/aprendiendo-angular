@@ -276,3 +276,55 @@ Este Hook brinda acceso a los siguientes métodos:
         console.log("OnDestroy ejecutado")
     }
 ```
+---
+## ¿Cómo crear una clase e importarla dentro de otra clase?
+
+Creamos una nueva carpeta con el archivo "configuracion.ts", dentro de ese archivo colocamos este objeto:
+
+```javascript
+    export var Configuracion = { //se debe colocar "export"
+        color: "red",
+        fondo: "blue",
+        titulo: "Aplicación con Angular",
+        descripcion: "Aprendiendo Angular con Victor Robles"
+    }
+```
+
+Para acceder a este objeto debebos importarlo en el archivo donde lo deseamos aplicar en este caso en el "app.component.ts"
+
+> import { Configuracion } from './models/configuracion';
+
+```javascript
+    export class AppComponent {
+        //Inicializamos todos lo atributos
+        public title = 'Master en JavaScript';
+        public descripcion: string; 
+        public mostrar_videojuegos: boolean = true;
+
+        constructor(){ //Con el constructor enlazamos a la variable y al objeto
+            this.config = Configuracion;// Al asignar el objeto a una variable podré acceder a él a través de dicha variable, no se necesitaría declarar todos los atributos del objeto.
+            this.title = Configuracion.titulo;
+            this.descripcion = Configuracion.descripcion
+    }
+```
+
+En el HTML colocamos las variables creadas en el constructor
+
+```html
+    <!-- De esta manera accederemos desde la vista a los atributos del objeto Configuracion -->
+    <div [ngStyle]="{'background': config.color}" class="content" role="main">
+    <!-- Puede reemplazase por: <div style="background: {{config.color}}" class="content" role="main"> -->
+    <h1>Bienvenido al {{ title }}</h1>
+    <p>{{ descripcion }}</p>
+```
+
+En la directiva [ngStyle] se pueden colocar más atributos:
+
+```html
+    <div [ngStyle]="{
+                    'background': config.fondo,
+                    'padding': '20px',
+                    'border' : '5px solid black',
+                    'border-color': config.color
+                }" class="content" role="main">
+```
