@@ -335,7 +335,7 @@ Un modelo de una entidad puede tener diversas propiedades, que pueden servir com
 > **Importante:** Cuando se vaya a crear un nuevo modelo, se recomienda que su nombre esté en singular, dado que el modelo representa a un solo objeto.
 
 ### Crear un nuevo modelo de datos
-En un nuevo archivo colocamos lo siguiente:
+En un nuevo archivo (zapatillas.ts) colocamos lo siguiente:
 ```javascript
     // De manera larga, menos óptima
     export class Zapatilla{
@@ -366,4 +366,48 @@ Todo lo colocado anteriormente lo podemos resumir de la siguiente manera:
             public stock: boolean
         ){}
     }
+```
+
+### Importar el nuevo modelo de datos
+En el archivo donde se desee importar (zapatillas.component.ts), colocamos lo siguiente:
+
+```javascript
+
+    import { Component, OnInit } from "@angular/core";
+    import { Zapatilla } from "../models/zapatillas";
+
+    @Component({
+        selector: 'zapatillas',
+        templateUrl: './zapatillas.component.html'
+    })
+
+    export class ZapatillasComponent implements OnInit{
+        public titulo: string = "Componente de Zapatillas"
+        public zapatillas: Array<Zapatilla>; // Crear array para colocar los objetos
+        constructor(){
+            // Haciendo referencia al Array "zapatillas"
+            this.zapatillas = [
+                new Zapatilla('Nike Airmax', 'Nike', 'Blancas', 40, true),
+                new Zapatilla('Reebook Clasic', 'Reebok', 'Blanco', 80, true),
+                new Zapatilla('Nike Runner MD', 'Nike', 'Negras', 60, true),
+                new Zapatilla('Adidas Yezzy', 'Adidas', 'Azul', 180, false)
+            ];
+        }
+
+        ngOnInit(): void {
+            // Al implementar onInit obligatoriamente debemos utilizar esta interfaz para mostrar los resultados
+            console.log(this.zapatillas);
+        }
+    }
+```
+
+Para mostrar todos los objetos almacenados en el array en la vista(zapatillas.component.html) solo es necesario utilizar la directiva *ngFor*
+
+````html
+    <h2>{{titulo}}</h2>
+    <ul>
+        <li *ngFor="let deportiva of zapatillas">
+        {{deportiva.nombre}} - <strong>{{deportiva.precio}}€</strong>
+        </li>
+    </ul>
 ```
