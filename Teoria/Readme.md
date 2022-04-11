@@ -1,5 +1,5 @@
 # ANGULAR
-Es un framework para JavaScript que nos a a ayudar a desarrollar aplicaciones web SPA, es decir, una aplicación que no se necesita recargar la página en ningún momento y que está completamente separada del **backend**. La comunicación con el *Backend* es mediante peticiones AJAX y mediante comunicación asincrona.
+Es un framework para JavaScript que nos va a ayudar a desarrollar aplicaciones web SPA, es decir, una aplicación que no se necesita recargar la página en ningún momento y que está completamente separada del **backend**. La comunicación con el *Backend* es mediante peticiones AJAX y mediante comunicación asincrona.
 
 En caso de tenerlo instalado debemos hacer lo siguiente:
 
@@ -28,14 +28,14 @@ La lógica de un componente dentro de una clase en Angular es que da soporte a u
 El componente hace de mediador entre la vista a través de la plantilla y la lógica de la app donde se incluirá el modelo de datos,es decir una especie de controlador.
 
 ### **2- Plantillas**
-Las plantillas van a definir van a definir la vista de los componentes.
+Las plantillas van a definir la vista de los componentes.
 
 Son htmls y tienen sintaxis especial de Angular. Trabajando con el databinding y las directivas.
 
 ### **3- Decoradores y metadatos**
 Con los decoradores (patrón de diseño) vamos a configurar dinamicamente atributos/metadatos de las clases y componentes.
 
-Los metadatos van a describir a las clases pero también describen relaciones, por ejemplo si tenemos un componente y una plantilla el metadato ser va a encargar de decirle a Angular que ese componente y esa plantilla van juntos, entre otras muchas cosas.
+Los metadatos van a describir a las clases pero también describen relaciones, por ejemplo si tenemos un componente y una plantilla, el metadato se va a encargar de decirle a Angular que ese componente y esa plantilla van juntos, entre otras muchas cosas.
 
 ### **4- Servicios**
 Son clases con un objetivo claro, facilita la reutilización, son un tipo de elemento dentro de la arquitectura de Angular y mediante la inyección de dependencias los podemos usar en otro componentes principales.
@@ -290,7 +290,7 @@ Creamos una nueva carpeta con el archivo "configuracion.ts", dentro de ese archi
     }
 ```
 
-Para acceder a este objeto debebos importarlo en el archivo donde lo deseamos aplicar en este caso en el "app.component.ts"
+Para acceder a este objeto debebos importarlo en el archivo donde lo deseamos aplicar, en este caso en el "app.component.ts"
 
 > import { Configuracion } from './models/configuracion';
 
@@ -327,4 +327,43 @@ En la directiva [ngStyle] se pueden colocar más atributos:
                     'border' : '5px solid black',
                     'border-color': config.color
                 }" class="content" role="main">
+```
+---
+## MODELO DE DATOS 
+Un modelo de una entidad puede tener diversas propiedades, que pueden servir como molde para la creación de diversos objetos. 
+
+> **Importante:** Cuando se vaya a crear un nuevo modelo, se recomienda que su nombre esté en singular, dado que el modelo representa a un solo objeto.
+
+### Crear un nuevo modelo de datos
+En un nuevo archivo colocamos lo siguiente:
+```javascript
+    // De manera larga, menos óptima
+    export class Zapatilla{
+        public nombre: string;
+        public marca: string;
+        public color: string;
+        public precio: string;
+        public stock: boolean;
+
+        constructor(nombre, marca, color, precio, stock){
+            this.nombre = nombre;
+            this.marca = marca;
+            this.color = color;
+            this.precio = precio;
+            this.stock = stock;
+        }
+    }
+```
+
+Todo lo colocado anteriormente lo podemos resumir de la siguiente manera:
+```javascript
+    export class Zapatilla{
+        constructor(
+            public nombre: string,
+            public marca: string,
+            public color: string,
+            public precio: number,
+            public stock: boolean
+        ){}
+    }
 ```

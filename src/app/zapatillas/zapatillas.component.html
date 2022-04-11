@@ -1,6 +1,10 @@
 <h2>{{titulo}}</h2>
 <ul>
-    <li>Reeok Classic</li>
-    <li>Fila retro</li>
-    <li>Adidas Yezzy</li>
+    <li *ngFor="let deportiva of zapatillas">{{deportiva.nombre}} - <strong>{{deportiva.precio}}€</strong>
+        <span *ngIf="deportiva.precio < 80"
+            [style.background]="deportiva.precio < 80 ? 'green': 'transparent'"
+            [style.color]="deportiva.precio < 80 ? 'white': 'black'"
+            > !EN OFERTA¡ </span>
+    </li>
+    
 </ul>
