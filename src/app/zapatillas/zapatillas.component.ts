@@ -10,8 +10,10 @@ export class ZapatillasComponent implements OnInit{
     public titulo: string = "Componente de Zapatillas"
     public zapatillas: Array<Zapatilla>;
     public marcas: String[];
+    public color: string;
 
     constructor(){
+        this.color = 'blue';
         this.marcas = new Array;
         this.zapatillas = [
             new Zapatilla('Nike Airmax', 'Nike', 'Blancas', 40, true),
@@ -31,7 +33,7 @@ export class ZapatillasComponent implements OnInit{
         
         this.zapatillas.forEach((zapatilla, index) =>{
             if(this.marcas.indexOf(zapatilla.marca)< 0){
-            this.marcas.push(zapatilla.marca);
+                this.marcas.push(zapatilla.marca);
             }
         });
         console.log(this.marcas);
