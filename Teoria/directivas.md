@@ -86,3 +86,88 @@ Utilizando el ngFor, mostraremos en la vista el Array Marcas
 ```
 
 ## ngSwitch
+Evaluará una variable o una propiedad y va a realizar una serie de casos dependiendo del valor del factor a evaluar.
+
+Por ejemplo:
+> Evaluaremos la variable 'color' del archivo "zapatillas.component.ts"
+
+```html
+<!-- En 'zapatillas.component.html' colocamos la directiva ngSwitch -->
+    <p>El color de la mayoria de nuestras zapatillas es:</p>
+    <ul [ngSwitch]="color">
+        <li *ngSwitchCase="'yellow'"> El color predominante es el <span [ngStyle]="{'background': color}"> amarillo </span></li>
+        <li *ngSwitchCase="'red'"> El color predominante es el <span [ngStyle]="{'background': color}">rojo</span></li>
+        <li *ngSwitchCase="'blue'"> El color predominante es el <span [ngStyle]="{'background': color}">azul</span></li>
+        <li *ngSwitchCase="'orange'"> El color predominante es el <span [ngStyle]="{'background': color}">naranja</span></li>
+    </ul>
+
+    <!-- [ngStyle] es una directiva que permite ingresar propiedades CSS como si fueran objetos json -->
+```
+Dependiendo del valor de *color* se efectuará cualquiera de las opciones.
+
+---
+# **TWO WAY DATA-BINDING Y EVENTO CLICK**
+Hasta ahora hemos utilizado *Binding* por interpolación, obtener información de un archivo que tenemos guardado dentro de alguna carpeta. Con *TWO WAY DATA-BINDING* buscaremos agregar marcas de zapatillas.
+
+## ¿Qué necesitamos para utilizar el **TWO WAY DATA-BINDING**?
+
+> **IMPORTANTE:** Debemos agregar en el archivo "app.module.ts": 
+> - import {FormsModule} from '@angular/forms';
+> - Y luego en el array de los imports agregar *FormsModule*
+
+Lo mencionado anteriormente nos permitirá utilizar la Directiva [(ngModel)] en los componentes.
+
+En el archivo zapatilla.component.ts crearemos la propiedad publica mi_marca y la inicializaremos en el constructor:
+> public mi_marca: string;
+> constructor(){
+>   this.mi_marca = 'elemento';
+> }
+
+```html
+    <!--  -->
+    <p>Añadir marca:</p>
+    <p>
+    <input type="text" [(ngModel)]="mi_marca"/>
+    <button (click)="getMarca()">Mostrar Marca</button>
+    </p>
+    <p>{{mi_marca}}</p>
+```
+
+Utilizando un imput de tipo texto accederemos a través de la directiva [(ngModel)] a la propiedad 'mi_marca', y nos dará el poder de modificarla.
+
+Podemos notar que al invocar la propiedad para que se muestre en la vista, podemos ver que lo que se escribe en el input se refleja en la vista casi en tiempo real.
+
+## Agregar una nueva marca
+
+En "zapatillas.component.ts" agregamos el método:
+
+``` javascript 
+    addMarca(){
+        this.marcas.push(this.mi_marca);
+    }
+```
+
+En "zapatilla.component.html" agregamos el boton:
+
+```html
+    <button (click)="addMarca()">Añadir Marca</button>
+```
+
+## EVENTO CLICK
+Para ejemplificar este evento, haremos el ejercicio de borrar el elemento de un array.
+
+```html
+    <ul>
+        <li *ngFor="let marca of marcas; let indice = index">{{indice + "-"+marca}}
+            <button (click)="borrarMarca(indice)">Borrar</button>
+        </li>
+        
+    </ul>
+```
+
+```javascript
+    borrarMarca(index : number){
+        // delete this.marcas[index];
+        this.marcas.splice(index,1);
+    }
+```
