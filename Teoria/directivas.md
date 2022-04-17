@@ -154,6 +154,8 @@ En "zapatilla.component.html" agregamos el boton:
 ```
 
 ## EVENTO CLICK
+Permite ejecutar un método al dar click en algún elemento.
+
 Para ejemplificar este evento, haremos el ejercicio de borrar el elemento de un array.
 
 ```html
@@ -170,4 +172,60 @@ Para ejemplificar este evento, haremos el ejercicio de borrar el elemento de un 
         // delete this.marcas[index];
         this.marcas.splice(index,1);
     }
+```
+
+## EVENTO BLUR Y KEYUP
+
+### BLUR
+Evento que se activa cuando el cursor sale del componente.
+
+En "zapatilla.componente.html" colocamos:
+
+> <input type="text" [(ngModel)]="mi_marca" (keyup)="onBlur()"/>
+
+Y creamos el método "onBlur" en "zapatillas.component.ts":
+
+```javascript
+    onBlur(){
+        console.log("Has salido del input");
+    }
+```
+
+Con keyup podemos capturar la acción sobre una tecla y ejecutar algún método.
+
+```html
+    <input type="text" [(ngModel)]="mi_marca" (keyup.enter)="mostrarPalabra()"/>
+    // Capturará la acción sobre la tecla enter.
+```
+
+## NGCLASS EN ATRIBUTOS
+Nos permite asignarle a un elemento una clase cuando se cumpla una condición. Hay 2 formas de utilizar el ngClass
+
+1. Como atributo:
+```html
+    <!-- Si el precio es >=80, se pondrá un estilo difirente al precio. -->
+    <strong [class.altoPrecio]="deportiva.precio>= 80">{{deportiva.precio}}€</strong>
+```
+
+Para ello debemos conectar en el "index.html" principal a lo hoja de estilo css correspondiente. Pero para que la conexión se correcta, debemos agregar la ruta de la hoja de estilo en el archivo "angular.json" en el array de "styles" y reiniciar el compilador.
+
+```
+    "styles": [
+    "src/styles.css",
+    "src/assets/styles.css"
+    ],
+```
+
+2- Como Directiva
+La ventaja de colocar el ngClass como directiva es que se pueden colocar los condicionales directamente a cada una de las clases.
+
+```html
+    <strong 
+        [class.altoPrecio]="deportiva.precio>= 80"
+        [ngClass]="{
+            'fondoRojo': deportiva.precio > 100,
+            'subrayado': deportiva.marca == 'Nike'
+        }"
+    >{{deportiva.precio}}€</strong>
+
 ```
