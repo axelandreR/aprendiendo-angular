@@ -207,7 +207,7 @@ Nos permite asignarle a un elemento una clase cuando se cumpla una condición. H
     <strong [class.altoPrecio]="deportiva.precio>= 80">{{deportiva.precio}}€</strong>
 ```
 
-Para ello debemos conectar en el "index.html" principal a lo hoja de estilo css correspondiente. Pero para que la conexión se correcta, debemos agregar la ruta de la hoja de estilo en el archivo "angular.json" en el array de "styles" y reiniciar el compilador.
+Para ello debemos conectar en el "index.html" principal a lo hoja de estilo css correspondiente. Pero para que la conexión sea correcta, debemos agregar la ruta de la hoja de estilo en el archivo "angular.json" en el array de "styles" y reiniciar el compilador.
 
 ```
     "styles": [
@@ -228,4 +228,15 @@ La ventaja de colocar el ngClass como directiva es que se pueden colocar los con
         }"
     >{{deportiva.precio}}€</strong>
 
+```
+
+## **PAGINAS Y RUTAS EN ANGULAR**
+### Configurar el Routing de Angular
+Buscaremos configurar el Routing de angular para conseguir una serie de rutas para cada uno de los componentes y hacer diferentes páginas en el proyecto.
+
+Podemos hacer que un componente no sea solo un trozo de la pantalla o que tenga una funcionalidad pequeña, sino que podemos hacer que el componente sea una página web en sí.
+
+>> 1er Paso: En el index.html debe estar presente la etiqueta: 
+```html
+    <base href="/">
 ```
